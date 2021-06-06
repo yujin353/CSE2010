@@ -33,7 +33,7 @@ int hashFunction(char* key) {
 }
 
 void addHashTable(Element item, Element ht[]) {
-	int i, hashValue, j;
+	int i, hashValue;
 	i = hashFunction(item.key);
 
 	while(!empty(ht[i])) {
@@ -41,11 +41,7 @@ void addHashTable(Element item, Element ht[]) {
 		if(i == hashFunction(item.key))
 			return;
 	}
-	ht[i] = item;
-	/*for (j = 0; j < strlen(item.key); j++) {
-		ht[i].key[j] = item.key[j];
-	}*/
-	
+	ht[i] = item;	
 }
 
 void hashSearch(Element item, Element ht[]) {
@@ -53,10 +49,11 @@ void hashSearch(Element item, Element ht[]) {
 	i = hashFunction(item.key);
 
 	while(!empty(ht[i])) {
-		if(ht[i].key == item.key){
+		if(strcmp(ht[i].key, item.key) == 0){
 			printf("Å½»ö ¼º°ø\n");
 			return;
 		}
+
 		i = (i + 1) % TABLE_SIZE;
 		if (i == hashFunction(item.key))
 			break;
